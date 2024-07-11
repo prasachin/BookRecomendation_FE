@@ -8,6 +8,7 @@ import AuthCard from "./components/Auth/AuthCard";
 import BookDetails from "./components/Books/BookDetails";
 import "./style.css";
 import Header from "./components/Common/Header";
+import Footer from "./components/Common/Footer";
 
 const App = () => {
   return (
@@ -23,6 +24,7 @@ const App = () => {
           <Route path="/books/:id" element={<BookDetails />} />
         </Routes>
       </div>
+      <Footer />
     </Router>
   );
 };

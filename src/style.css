@@ -103,7 +103,11 @@ h6 span {
   -webkit-transform-style: preserve-3d;
   transform-style: preserve-3d;
   transition: all 600ms ease-out;
+  /* border: 2px solid yellow; Adds a yellow border */
+  border-radius: 15px;
+  box-shadow: 0 4px 8px rgb(187, 187, 41), 0 6px 20px rgb(164, 164, 22);
 }
+
 .card-front,
 .card-back {
   width: 100%;
@@ -114,7 +118,7 @@ h6 span {
   background-repeat: no-repeat;
   background-size: 300%;
   position: absolute;
-  border-radius: 6px;
+  border-radius: 12px;
   left: 0;
   top: 0;
   -webkit-transform-style: preserve-3d;
@@ -281,4 +285,17 @@ h6 span {
   height: 26px;
   width: auto;
   display: block;
+}
+
+.fixed-form-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100vw;
+  z-index: 1000;
+  background-color: rgba(0, 0, 0, 0.1);
+  padding: 10px 20px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  margin-top: 60px;
 }

@@ -1,88 +1,60 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import {
-  Navbar,
-  Nav,
-  Button,
-  Image,
-  Dropdown,
-  Form,
-  FormControl,
-} from "react-bootstrap";
+import { Navbar, Nav, Image, Dropdown } from "react-bootstrap";
 import { LinkContainer } from "react-router-bootstrap";
 
-const Header = ({ onSearch }) => {
+const Header = () => {
   return (
-    <Navbar bg="dark" variant="dark" expand="lg" className="mb-4">
-      <Navbar.Brand href="/">Books</Navbar.Brand>
-      <Navbar.Toggle aria-controls="basic-navbar-nav" />
-      <Navbar.Collapse id="basic-navbar-nav">
+    <Navbar bg="dark" variant="dark" expand="lg" className="mb-4" fixed="top">
+      <Navbar.Brand href="/">BOOKS</Navbar.Brand>
+      <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+      <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto">
           <LinkContainer to="/">
-            <Nav.Link>Home</Nav.Link>
+            <Nav.Link as="span">Home</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/profile">
-            <Nav.Link>Profile</Nav.Link>
+            <Nav.Link as="span">Profile</Nav.Link>
           </LinkContainer>
           <LinkContainer to="/recommendations">
-            <Nav.Link>Recommendations</Nav.Link>
+            <Nav.Link as="span">Recommendations</Nav.Link>
           </LinkContainer>
         </Nav>
-        <Form
-          className="mx-auto"
-          inline
-          onSubmit={(e) => {
-            e.preventDefault();
-            onSearch(e.target.elements.search.value);
+      </Navbar.Collapse>
+      <Dropdown
+        style={{ paddingRight: "25px", paddingLeft: "0px", marginLeft: "0px" }}
+      >
+        <Dropdown.Toggle
+          variant="light"
+          id="dropdown-basic"
+          style={{
+            borderRadius: "50%",
+            padding: 0,
+            border: "none",
+            width: "50px",
+            height: "50px",
           }}
         >
-          <FormControl
-            type="text"
-            placeholder="Search"
-            className="mr-sm-2"
-            name="search"
-          />
-        </Form>
-        <Button
-          variant="outline-success"
-          type="submit"
-          style={{ marginRight: "70px" }}
-        >
-          Search
-        </Button>
-        <Dropdown style={{ paddingRight: "25px" }}>
-          <Dropdown.Toggle
-            variant="light"
-            id="dropdown-basic"
+          <Image
+            src="https://res.cloudinary.com/dbduadsbd/image/upload/v1709375511/ohionixpgqmfzsxnpftt.png"
+            alt="Profile"
+            roundedCircle
             style={{
-              borderRadius: "50%",
-              padding: 0,
-              border: "none",
-              width: "50px",
-              height: "50px",
+              width: "100px",
+              height: "60px",
+              objectFit: "cover",
             }}
-          >
-            <Image
-              src="https://res.cloudinary.com/dbduadsbd/image/upload/v1709375511/ohionixpgqmfzsxnpftt.png"
-              alt="Profile"
-              roundedCircle
-              style={{
-                width: "100px",
-                height: "60px",
-                objectFit: "cover",
-              }}
-            />
-          </Dropdown.Toggle>
-          <Dropdown.Menu>
-            <Dropdown.Item as={Link} to="/login">
-              Login
-            </Dropdown.Item>
-            <Dropdown.Item as={Link} to="/login">
-              Signup
-            </Dropdown.Item>
-          </Dropdown.Menu>
-        </Dropdown>
-      </Navbar.Collapse>
+          />
+        </Dropdown.Toggle>
+        <Dropdown.Menu>
+          <Dropdown.Item as={Link} to="/login">
+            Login
+          </Dropdown.Item>
+          <Dropdown.Item as={Link} to="/signup">
+            Signup
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
     </Navbar>
   );
 };
