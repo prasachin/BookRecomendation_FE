@@ -9,15 +9,20 @@ import BookDetails from "./components/Books/BookDetails";
 import "./style.css";
 import Header from "./components/Common/Header";
 import Footer from "./components/Common/Footer";
+import Home from "./components/Common/Home";
+import { useState } from "react";
 
 const App = () => {
+  const [query, setQuery] = useState("");
   return (
     <Router>
-      <Header />
+      <Header setQuery={setQuery} />
       <div className="App">
         <Routes>
-          <Route path="/" element={<BookList />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/books" element={<BookList query={query} />} />
           <Route exact path="/login" element={<AuthCard />} />
+          <Route path="/Home" element={<Home />} />
           <Route exact path="/register" element={<AuthCard />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/recommendations" element={<Recommendations />} />

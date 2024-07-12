@@ -10,7 +10,7 @@ import {
 } from "react-icons/fa";
 const Footer = () => {
   return (
-    <footer className="bg-dark text-light py-4" style={{ marginTop: "20px" }}>
+    <footer className="bg-dark text-light py-4" style={{ marginTop: "0px" }}>
       <Container>
         <Row>
           <Col xs={12} md={6} lg={3} className="text-center">

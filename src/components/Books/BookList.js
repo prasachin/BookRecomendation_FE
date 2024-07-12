@@ -6,27 +6,20 @@ import {
   Row,
   Col,
   Pagination,
-  Form,
-  Button,
   Spinner,
   Alert,
+  Button,
 } from "react-bootstrap";
-import { useTheme } from "@material-ui/core/styles";
-import KeyboardArrowRight from "@material-ui/icons/KeyboardArrowRight";
-import KeyboardArrowLeft from "@material-ui/icons/KeyboardArrowLeft";
-import MobileStepper from "@material-ui/core/MobileStepper";
 
 const booksPerPage = 12;
 
-const BookList = () => {
+const BookList = ({ query }) => {
   const [books, setBooks] = useState([]);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
-  const [query, setQuery] = useState("programming");
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  const [INDEX, setActiveStep] = React.useState(0);
-  const theme = useTheme();
+
   useEffect(() => {
     fetchBooks();
   }, [currentPage, query]);
@@ -54,16 +47,6 @@ const BookList = () => {
     } finally {
       setLoading(false);
     }
-  };
-
-  const handlePageChange = (page) => {
-    setCurrentPage(page);
-  };
-
-  const handleSearch = (e) => {
-    e.preventDefault();
-    setCurrentPage(1);
-    fetchBooks();
   };
 
   const renderBooks = () => {
@@ -111,90 +94,65 @@ const BookList = () => {
 
   const renderPagination = () => {
     const forwardButton = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep - 1);
+      setCurrentPage((prevPage) => Math.min(prevPage + 1, totalPages));
     };
 
     const previousButton = () => {
-      setActiveStep((prevActiveStep) => prevActiveStep + 1);
+      setCurrentPage((prevPage) => Math.max(prevPage - 1, 1));
     };
 
-    let items = [];
-    for (let number = 1; number <= totalPages; number++) {
-      items.push(
-        <Pagination.Item
-          key={number}
-          active={number === currentPage}
-          onClick={() => handlePageChange(number)}
-        >
-          {number}
-        </Pagination.Item>
-      );
-    }
+    const generatePaginationItems = () => {
+      const items = [];
+      const start = Math.max(currentPage - 1, 1);
+      const end = Math.min(currentPage + 1, totalPages);
+
+      for (let number = start; number <= end; number++) {
+        items.push(
+          <Pagination.Item
+            key={number}
+            active={number === currentPage}
+            onClick={() => setCurrentPage(number)}
+          >
+            {number}
+          </Pagination.Item>
+        );
+      }
+      return items;
+    };
+
     return (
-      <div
-        style={{
-          marginLeft: "0%",
-        }}
-      >
-        <MobileStepper
-          steps={5}
-          variant="dots"
-          style={{
-            flexGrow: 1,
-            maxWidth: 400,
-          }}
-          activeStep={INDEX}
-          position="static"
-          nextButton={
-            <Button
-              size="small"
-              onClick={previousButton}
-              disabled={INDEX === 4}
-            >
-              Next
-              {theme.direction !== "rtl" ? (
-                <KeyboardArrowRight />
-              ) : (
-                <KeyboardArrowLeft />
-              )}
-            </Button>
-          }
-          backButton={
-            <Button size="small" onClick={forwardButton} disabled={INDEX === 0}>
-              {theme.direction !== "rtl" ? (
-                <KeyboardArrowLeft />
-              ) : (
-                <KeyboardArrowRight />
-              )}
-              Back
-            </Button>
-          }
+      <Pagination className="justify-content-center mt-4">
+        <Pagination.Prev
+          onClick={previousButton}
+          disabled={currentPage === 1}
         />
-      </div>
+        {currentPage > 2 && (
+          <>
+            <Pagination.Item onClick={() => setCurrentPage(1)}>
+              1
+            </Pagination.Item>
+            {currentPage > 3 && <Pagination.Ellipsis />}
+          </>
+        )}
+        {generatePaginationItems()}
+        {currentPage < totalPages - 1 && (
+          <>
+            {currentPage < totalPages - 2 && <Pagination.Ellipsis />}
+            <Pagination.Item onClick={() => setCurrentPage(totalPages)}>
+              {totalPages}
+            </Pagination.Item>
+          </>
+        )}
+        <Pagination.Next
+          onClick={forwardButton}
+          disabled={currentPage === totalPages}
+        />
+      </Pagination>
     );
   };
 
   return (
     <Container>
-      <div className="fixed-form-container">
-        <Container>
-          <Row>
-            <Col>
-              <Form onSubmit={handleSearch} className="d-flex mb-4">
-                <Form.Control
-                  type="text"
-                  placeholder="Search for books..."
-                  value={query}
-                  onChange={(e) => setQuery(e.target.value)}
-                />
-                <Button type="submit" variant="primary" className="ml-2">
-                  Search
-                </Button>
-              </Form>
-            </Col>
-          </Row>
-        </Container>
-      </div>
       {loading ? (
         <div className="text-center mt-4">
           <Spinner animation="border" />
@@ -205,7 +163,7 @@ const BookList = () => {
         </Alert>
       ) : (
         <>
-          <Row  style={{marginTop:"120px"}}>{renderBooks()}</Row>
+          <Row style={{ marginTop: "120px" }}>{renderBooks()}</Row>
           {renderPagination()}
         </>
       )}

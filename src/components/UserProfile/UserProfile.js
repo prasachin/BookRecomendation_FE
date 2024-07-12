@@ -47,7 +47,7 @@ const Profile = () => {
     <div className="container mt-5">
       {error && <Alert variant="danger">{error}</Alert>}
       {user ? (
-        <Card>
+        <Card style={{ marginTop: "280px", marginBottom: "180px" }}>
           <Card.Header as="h5" className="d-flex justify-content-between">
             User Profile
             <Button variant="danger" onClick={handleLogout}>
