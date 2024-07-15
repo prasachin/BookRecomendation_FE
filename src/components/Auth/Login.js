@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaAt, FaLock } from "react-icons/fa";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; // Assuming you're using react-router-dom for navigation
+import { useNavigate } from "react-router-dom";
 
 const Login = ({ loginUrl }) => {
   const [email, setEmail] = useState("");
@@ -15,18 +15,15 @@ const Login = ({ loginUrl }) => {
 
     if (!email || !password) {
       setMessage("Email and Password are required");
-      setTimeout(() => setMessage(null), 4000);
+      setTimeout(() => setMessage(null), 3000);
       return;
     }
 
     try {
-      const response = await axios.post(
-        "http://localhost:3003/api/users/login",
-        {
-          email,
-          password,
-        }
-      );
+      const response = await axios.post("/api/users/login", {
+        email,
+        password,
+      });
 
       const token = response.data.token;
       localStorage.setItem("token", token);

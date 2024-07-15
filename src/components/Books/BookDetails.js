@@ -12,7 +12,7 @@ const BookDetails = () => {
 
   const fetchBookDetails = async () => {
     try {
-      const response = await fetch(`your_api_endpoint_here/books/${id}`); // Replace with your API endpoint
+      const response = await fetch(`your_api_endpoint_here/books/${id}`); 
       const data = await response.json();
       setBook(data);
     } catch (error) {

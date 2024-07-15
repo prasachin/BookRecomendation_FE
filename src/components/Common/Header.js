@@ -49,7 +49,7 @@ const Header = ({ setQuery }) => {
         </Alert>
       )}
       <Navbar bg="dark" variant="dark" expand="lg" className="mb-4" fixed="top">
-        <Navbar.Brand href="/">BOOKS</Navbar.Brand>
+        <Navbar.Brand style={{ marginLeft: "20px" }}>BOOKS</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">
@@ -72,21 +72,16 @@ const Header = ({ setQuery }) => {
           <Form onSubmit={handleSearch} className="d-flex mx-auto search-form">
             <Form.Control
               type="text"
-              placeholder="Search by tilte , author , genre..."
+              placeholder="Search by title, author, genre..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
+              className="mr-2"
             />
             <Button type="submit" variant="primary" className="ml-2">
               Search
             </Button>
           </Form>
-          <Dropdown
-            style={{
-              paddingRight: "25px",
-              paddingLeft: "0px",
-              marginLeft: "0px",
-            }}
-          >
+          <Dropdown className="ml-auto">
             <Dropdown.Toggle
               variant="light"
               id="dropdown-basic"
@@ -96,6 +91,8 @@ const Header = ({ setQuery }) => {
                 border: "none",
                 width: "50px",
                 height: "50px",
+                marginRight: "30px",
+                marginTop: "5px",
               }}
             >
               <Image

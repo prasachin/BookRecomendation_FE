@@ -11,12 +11,15 @@ import Header from "./components/Common/Header";
 import Footer from "./components/Common/Footer";
 import Home from "./components/Common/Home";
 import { useState } from "react";
+import Notification from "./components/Common/Notification";
+import About from "./components/Common/About";
 
 const App = () => {
   const [query, setQuery] = useState("");
   return (
     <Router>
       <Header setQuery={setQuery} />
+      <Notification />
       <div className="App">
         <Routes>
           <Route path="/" element={<Home />} />
@@ -26,7 +29,7 @@ const App = () => {
           <Route exact path="/register" element={<AuthCard />} />
           <Route exact path="/profile" element={<Profile />} />
           <Route exact path="/recommendations" element={<Recommendations />} />
-          <Route path="/books/:id" element={<BookDetails />} />
+          <Route path="/About" element={<About />} />
         </Routes>
       </div>
       <Footer />

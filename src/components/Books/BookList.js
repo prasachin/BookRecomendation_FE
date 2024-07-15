@@ -64,27 +64,37 @@ const BookList = ({ query }) => {
               alt={volumeInfo.title}
               style={{ height: "200px", objectFit: "cover" }}
             />
-            <Card.Body>
-              <Card.Title>{volumeInfo.title}</Card.Title>
-              <Card.Subtitle className="mb-2 text-muted">
-                {volumeInfo.authors?.join(", ")}
-              </Card.Subtitle>
-              <Card.Text>
-                <strong>Genre:</strong> {volumeInfo.categories?.join(", ")}
-                <br />
-                <strong>Publication Date:</strong> {volumeInfo.publishedDate}
-                <br />
-                {volumeInfo.description &&
-                  volumeInfo.description.substring(0, 100)}
-                ...
-              </Card.Text>
-              <Button
-                variant="primary"
-                href={volumeInfo.infoLink}
-                target="_blank"
-              >
-                View Details
-              </Button>
+            <Card.Body className="d-flex flex-column">
+              <div>
+                <Card.Title>{volumeInfo.title}</Card.Title>
+                <Card.Subtitle className="mb-2 text-muted">
+                  {volumeInfo.authors?.join(", ")}
+                </Card.Subtitle>
+                <Card.Text>
+                  <strong>Genre:</strong> {volumeInfo.categories?.join(", ")}
+                  <br />
+                  <strong>Publication Date:</strong> {volumeInfo.publishedDate}
+                  <br />
+                  {volumeInfo.description &&
+                    volumeInfo.description.substring(0, 100)}
+                  ...
+                </Card.Text>
+              </div>
+              <div className="mt-auto">
+                <div className="d-flex justify-content-between">
+                  <Button
+                    variant="primary"
+                    href={volumeInfo.infoLink}
+                    target="_blank"
+                  >
+                    Read
+                  </Button>
+                  <Button variant="secondary">Rate</Button>
+                </div>
+                <Button variant="secondary" className="mt-2 w-100">
+                  Review
+                </Button>
+              </div>
             </Card.Body>
           </Card>
         </Col>
@@ -155,10 +165,10 @@ const BookList = ({ query }) => {
     <Container>
       {loading ? (
         <div className="text-center mt-4">
-          <Spinner animation="border" />
+          <Spinner animation="border" style={{ marginTop: "100px" }} />
         </div>
       ) : error ? (
-        <Alert variant="danger" className="mt-4">
+        <Alert variant="danger" style={{ marginTop: "100px" }}>
           {error}
         </Alert>
       ) : (

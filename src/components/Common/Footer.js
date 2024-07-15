@@ -83,11 +83,6 @@ const Footer = () => {
                   About
                 </a>
               </li>
-              <li>
-                <a href="/Users" style={{ textDecoration: "none" }}>
-                  Users
-                </a>
-              </li>
             </ul>
           </Col>
         </Row>

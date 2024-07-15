@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { FaAt, FaLock, FaUser } from "react-icons/fa";
 import axios from "axios";
 import { Alert } from "react-bootstrap";
-import { useNavigate } from "react-router-dom"; // Assuming you're using react-router-dom for navigation
+import { useNavigate } from "react-router-dom";
 
 const SignUp = ({ signurl }) => {
   const [name, setName] = useState("");
@@ -21,7 +21,7 @@ const SignUp = ({ signurl }) => {
     }
 
     try {
-      await axios.post("http://localhost:3003/api/users/register", {
+      await axios.post("/api/users/register", {
         name,
         email,
         password,
@@ -35,7 +35,9 @@ const SignUp = ({ signurl }) => {
       setEmail("");
       setPassword("");
     } catch (error) {
-      setMessage("Can't sign up: " + error.message);
+      setMessage(
+        "Can't sign up check email format and password min length 5: "
+      );
       setTimeout(() => setMessage(null), 4000);
       console.error("Can't sign up ", error.message);
     }
