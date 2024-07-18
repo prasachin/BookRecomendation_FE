@@ -19,14 +19,14 @@ const Notification = () => {
     <Toast
       onClose={() => setShow(false)}
       show={show}
-      delay={3000}
+      delay={5000}
       autohide
       style={{ position: "fixed", top: "10px", right: "10px", zIndex: 2000 }}
     >
       <Toast.Header>
         <strong className="mr-auto">Notification</strong>
       </Toast.Header>
-      <Toast.Body>{message}</Toast.Body>
+      <Toast.Body style={{ color: "green" }}>{message}</Toast.Body>
     </Toast>
   );
 };

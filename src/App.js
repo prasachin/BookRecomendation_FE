@@ -5,7 +5,6 @@ import BookList from "./components/Books/BookList";
 import Profile from "./components/UserProfile/UserProfile";
 import Recommendations from "./components/Books/Recommendation";
 import AuthCard from "./components/Auth/AuthCard";
-import BookDetails from "./components/Books/BookDetails";
 import "./style.css";
 import Header from "./components/Common/Header";
 import Footer from "./components/Common/Footer";

@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Container, Row, Col, Card } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import "aos/dist/aos.css";
 import AOS from "aos";
 

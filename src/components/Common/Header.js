@@ -49,7 +49,18 @@ const Header = ({ setQuery }) => {
         </Alert>
       )}
       <Navbar bg="dark" variant="dark" expand="lg" className="mb-4" fixed="top">
-        <Navbar.Brand style={{ marginLeft: "20px" }}>BOOKS</Navbar.Brand>
+        <Navbar.Brand style={{ marginLeft: "20px" }}>
+          <Image
+            src="/assets/logo.png"
+            alt="logo"
+            roundedCircle
+            style={{
+              width: "95px",
+              height: "47px",
+              objectFit: "cover",
+            }}
+          />
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto">

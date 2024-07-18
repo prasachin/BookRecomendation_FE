@@ -307,7 +307,14 @@ h6 span {
   align-items: center;
   justify-content: center;
 }
-
+.recommendation-container {
+  background: url("../public/assets/book2.jpg") no-repeat center center fixed;
+  background-size: cover;
+  /* height: 100vh; */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
 .home-content {
   background: rgba(28, 28, 28, 0.8);
   padding: 2rem;

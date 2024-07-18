@@ -1,4 +1,4 @@
-import { Container, Row, Col, Image } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 import {
   FaTwitter,
   FaInstagram,
@@ -8,24 +8,22 @@ import {
   FaTelegram,
   FaGithub,
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <footer className="bg-dark text-light py-4" style={{ marginTop: "0px" }}>
       <Container>
         <Row>
           <Col xs={12} md={6} lg={3} className="text-center">
-            <h2>Developer</h2>
-            <a href="https://www.linkedin.com/in/sachin-prakash-24076b289">
-              <Image
-                src="http://res.cloudinary.com/dbduadsbd/image/upload/v1720687962/f0pzgh39falhqew69q5t.jpg"
-                alt="footer"
-                roundedCircle
-                style={{ width: "140px", height: "140px" }}
-              />
-            </a>
+            <h2>Famous Searches !</h2>
+            <span>Fictions ,</span>
+            <span> Horror </span>
+            <br />
+            <span> Romantic ,</span>
+            <span> Famous ,</span>
             <br />
             stay tuned <br />
-            <a href="/Subscribe">
+            <a href="/">
               <FaBell />
             </a>
           </Col>
@@ -73,16 +71,14 @@ const Footer = () => {
           <Col xs={12} md={6} lg={3} className="text-center">
             <h2>Explore</h2>
             <ul className="list-unstyled">
-              <li style={{ marginBottom: "10px", textDecoration: "none" }}>
-                <a href="/" style={{ textDecoration: "none" }}>
-                  Home
-                </a>
-              </li>
-              <li style={{ marginBottom: "10px", textDecoration: "none" }}>
-                <a href="/About" style={{ textDecoration: "none" }}>
-                  About
-                </a>
-              </li>
+              <Link to="/" style={{ textDecoration: "none" }}>
+                Home
+              </Link>{" "}
+              <br />
+              <br />
+              <Link to="/About" style={{ textDecoration: "none" }}>
+                About
+              </Link>
             </ul>
           </Col>
         </Row>
